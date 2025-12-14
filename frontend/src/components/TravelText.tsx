@@ -5,7 +5,7 @@ import { travelColors, travelStyles } from '../styles/travelTheme';
 
 interface TravelTextProps extends TypographyProps {
   text: string;
-  textVariant?: 'gradient' | 'wanderlust' | 'adventure' | 'simple';
+  textVariant?: 'gradient' | 'wanderlust' | 'adventure' | 'simple' | 'forest';
   animated?: boolean;
   typewriter?: boolean;
   speed?: number;
@@ -90,6 +90,19 @@ const getTextStyles = (textVariant: string, animated: boolean) => {
             transform: 'scale(1.02)',
           },
         };
+
+        case 'forest':
+          return {
+            color: travelColors.primary.forest,
+            fontFamily: travelStyles.fonts.primary,
+            fontWeight: 600,
+            textShadow: `0 2px 6px ${travelColors.primary.forest}30`,
+            transition: travelStyles.transitions.medium,
+            '&:hover': {
+              color: travelColors.primary.ocean,
+            },
+          };
+
         
       default: // simple
         return {
