@@ -1,0 +1,9 @@
+{
+  "short_name": "TraveLogy",
+  "name": "TraveLogy - Smart Travel Diary",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": []
+}

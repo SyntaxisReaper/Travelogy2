@@ -1,0 +1,69 @@
+/* Flip and tilt UI micro-interactions */
+
+/* FlipButton styles */
+.flip-btn {
+  perspective: 800px;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.flip-btn .flip-inner {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25em;
+  transform-style: preserve-3d;
+  transition: transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+.flip-btn .flip-front,
+.flip-btn .flip-back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-btn .flip-front { transform: rotateY(0deg); }
+.flip-btn .flip-back { transform: rotateY(180deg); }
+.flip-btn[data-axis='X'] .flip-front { transform: rotateX(0deg); }
+.flip-btn[data-axis='X'] .flip-back { transform: rotateX(180deg); }
+
+.flip-btn .flip-content {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+.flip-btn .flip-icon { display: inline-flex; }
+
+/* Trigger on hover/click */
+.flip-btn[data-flip='hover']:hover .flip-inner { transform: rotateY(180deg); }
+.flip-btn[data-axis='X'][data-flip='hover']:hover .flip-inner { transform: rotateX(180deg); }
+.flip-btn[data-flip='click']:active .flip-inner { transform: rotateY(180deg); }
+.flip-btn[data-axis='X'][data-flip='click']:active .flip-inner { transform: rotateX(180deg); }
+
+/* Subtle glow on hover */
+.flip-btn:hover {
+  box-shadow: inset 0 0 0 2px rgba(29, 233, 182, 0.4);
+}
+
+/* Tilt hover cards */
+.tilt-hover {
+  transform-style: preserve-3d;
+  transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+}
+.tilt-hover:hover,
+.tilt-hover:focus-within {
+  transform: translateY(-2px) rotateX(1deg) rotateY(-1deg);
+  box-shadow: 0 12px 24px rgba(29, 233, 182, 0.12);
+  border-color: #1de9b6 !important;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .flip-btn .flip-inner { transition: none; }
+  .tilt-hover { transition: none; }
+}
